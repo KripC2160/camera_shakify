@@ -586,15 +586,19 @@ class CameraShakeInstance(bpy.types.PropertyGroup):
 
 #========================================================
 
+classes = (
+    CameraShakifyPanel,
+    OBJECT_UL_camera_shake_items,
+    CameraShakeInstance,
+    CameraShakeAdd,
+    CameraShakeRemove,
+    CameraShakeMove,
+    CameraShakesFixGlobal,
+)
 
 def register():
-    bpy.utils.register_class(CameraShakifyPanel)
-    bpy.utils.register_class(OBJECT_UL_camera_shake_items)
-    bpy.utils.register_class(CameraShakeInstance)
-    bpy.utils.register_class(CameraShakeAdd)
-    bpy.utils.register_class(CameraShakeRemove)
-    bpy.utils.register_class(CameraShakeMove)
-    bpy.utils.register_class(CameraShakesFixGlobal)
+    for cls in classes:
+        bpy.utils.register_class(cls)
     #bpy.utils.register_class(ActionToPythonData)
     #bpy.types.VIEW3D_MT_object.append(
     #    lambda self, context : self.layout.operator(ActionToPythonData.bl_idname)
@@ -606,15 +610,9 @@ def register():
 
     bpy.types.WindowManager.camera_shake_show_utils = bpy.props.BoolProperty(name="Show Camera Shake Utils UI", default=False)
 
-
 def unregister():
-    bpy.utils.unregister_class(CameraShakifyPanel)
-    bpy.utils.unregister_class(OBJECT_UL_camera_shake_items)
-    bpy.utils.unregister_class(CameraShakeInstance)
-    bpy.utils.unregister_class(CameraShakeAdd)
-    bpy.utils.unregister_class(CameraShakeRemove)
-    bpy.utils.unregister_class(CameraShakeMove)
-    bpy.utils.unregister_class(CameraShakesFixGlobal)
+    for cls in classes:
+        bpy.utils.unregister_class(cls)
     #bpy.utils.unregister_class(ActionToPythonData)
 
 
